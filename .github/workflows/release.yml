@@ -1,0 +1,50 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare staging folder
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $staging = Join-Path $env:RUNNER_TEMP 'addon'
+          if (Test-Path $staging) { Remove-Item $staging -Recurse -Force }
+          New-Item -ItemType Directory -Path $staging | Out-Null
+
+          $excludeFiles = @('.gitignore','bms-colorizer-2.code-workspace')
+          $excludeDirs = @('.git','.github')
+
+          Get-ChildItem -Path . -Force | ForEach-Object {
+            if ($excludeDirs -contains $_.Name) { return }
+            if ($excludeFiles -contains $_.Name) { return }
+            Copy-Item -Path $_.FullName -Destination $staging -Recurse -Force
+          }
+
+      - name: Create zip
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $staging = Join-Path $env:RUNNER_TEMP 'addon'
+          $zipName = 'bms-colorizer-2.zip'
+          $zipPath = Join-Path $env:RUNNER_TEMP $zipName
+          if (Test-Path $zipPath) { Remove-Item $zipPath -Force }
+          Compress-Archive -Path (Join-Path $staging '*') -DestinationPath $zipPath
+          "ZIP_PATH=$zipPath" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ZIP_PATH }}

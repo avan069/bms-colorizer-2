@@ -1,0 +1,3 @@
+.gitignore export-ignore
+.github/ export-ignore
+bms-colorizer-2.code-workspace export-ignore
