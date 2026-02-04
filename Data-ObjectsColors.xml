@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Resources>
+
+	<!-- Objects Colors -->
+
+	<!--
+		Color codes are:
+
+			#RRGGBB
+
+		Except for threats (SAM/AAA domes) which are:
+
+			(hue, saturation, lightness)
+			#HHSSLL
+
+		Note that lightness is currently ignored by Tacview.
+	-->
+
+	<!-- Colors used for very specific cases -->
+
+	<SpecialColors>
+
+		<!-- Default Color -->
+		<!-- Used only when the object is completely unknown (not even recognized in the database) -->
+
+		<Color ID="Default">
+			<Icon>#606060</Icon>
+			<Top>#d9d9d9</Top>
+			<Bottom>#8E8E8E</Bottom>
+			<Side>#ADADAD</Side>
+			<Lines>#ADADAD</Lines>
+			<Threat>#0000d8</Threat>
+		</Color>
+
+		<!-- Destroyed objects -->
+		<!-- Ground objects which are destroyed remains displayed, but without their label and using this color. -->
+
+		<Color ID="Destroyed">
+			<Icon>#808080</Icon>
+			<Top>#828282</Top>
+			<Bottom>#333333</Bottom>
+			<Side>#5E5E5E</Side>
+			<Lines>#5E5E5E</Lines>
+			<Threat>#0000d8</Threat>
+		</Color>
+
+	</SpecialColors>
+
+	<!-- Official Objects Colors -->
+
+
+
+	<ObjectsColors>
+		<Color ID="Red">
+			<Icon>#ff0000</Icon>
+			<Top>#fcb4b4</Top>
+			<Bottom>#6e0e0e</Bottom>
+			<Side>#b91919</Side>
+			<Lines>#FF4040</Lines>
+			<Threat>#00c0d8</Threat>
+		</Color>
+	
+		<Color ID="Orange">
+			<Icon>#FF7F00</Icon>
+			<Top>#F9CFB3</Top>
+			<Bottom>#974806</Bottom>
+			<Side>#E36C09</Side>
+			<Lines>#FF7F00</Lines>
+			<Threat>#11c0d8</Threat>
+		</Color>
+	
+		<Color ID="Yellow">
+			<Icon>#ffc30b</Icon>
+			<Top>#ffff00</Top>
+			<Bottom>#fce205</Bottom>
+			<Side>#ffd300</Side>
+			<Lines>#FFDF00</Lines>
+			<Threat>#316464</Threat>
+		</Color>
+	
+		<Color ID="Green">
+			<Icon>#006000</Icon>
+			<Top>#b4fcb4</Top>
+			<Bottom>#189C00</Bottom>
+			<Side>#54b400</Side>
+			<Lines>#00B050</Lines>
+			<Threat>#55c0d8</Threat>
+		</Color>
+	
+		<Color ID="Cyan">
+			<Icon>#00acc1</Icon>
+			<Top>#00ffff</Top>
+			<Bottom>#00838f</Bottom>
+			<Side>#00acc1</Side>
+			<Lines>#00ffff</Lines>
+			<Threat>#85c0d8</Threat>
+		</Color>
+	
+		<Color ID="Blue">
+			<Icon>#3e5fa5</Icon>
+			<Top>#b4b4fc</Top>
+			<Bottom>#2e5780</Bottom>
+			<Side>#447bbb</Side>
+			<Lines>#59a4da</Lines>
+			<Threat>#a9c0d8</Threat>
+		</Color>
+	
+		<Color ID="Violet">
+			<Icon>#fe00fd</Icon>
+			<Top>#FBB4FC</Top>
+			<Bottom>#8E0090</Bottom>
+			<Side>#B200B4</Side>
+			<Lines>#B200FF</Lines>
+			<Threat>#d4c0d8</Threat>
+		</Color>
+
+
+
+		<!-- Bright Sky Cyan -->
+		<Color ID="P1">
+			<Icon>#009fbb</Icon>
+			<Top>#8AE4FF</Top>
+			<Bottom>#0A4E66</Bottom>
+			<Side>#2BC8FF</Side>
+			<Lines>#4FE0FF</Lines>
+			<Threat>#7FC6D8</Threat>
+		</Color>
+
+		<!-- Deep Royal Blue -->
+		<Color ID="P2">
+			<Icon>#0032D4</Icon>
+			<Top>#6A86E6</Top>
+			<Bottom>#00184F</Bottom>
+			<Side>#1F4BEB</Side>
+			<Lines>#335CFF</Lines>
+			<Threat>#8FA4D8</Threat>
+		</Color>
+
+		<!-- Vivid Lime -->
+		<Color ID="P3">
+			<Icon>#3c8500</Icon>
+			<Top>#A7E86A</Top>
+			<Bottom>#274F00</Bottom>
+			<Side>#6FE600</Side>
+			<Lines>#7DFF1A</Lines>
+			<Threat>#9ACF7D</Threat>
+		</Color>
+
+		<!-- Deep Forest Green -->
+		<Color ID="P4">
+			<Icon>#006B09</Icon>
+			<Top>#4FAF5A</Top>
+			<Bottom>#002F04</Bottom>
+			<Side>#0E8A1A</Side>
+			<Lines>#1EBF2A</Lines>
+			<Threat>#7FB092</Threat>
+		</Color>
+
+		<!-- Electric Purple -->
+		<Color ID="P5">
+			<Icon>#8A1DA0</Icon>
+			<Top>#C47AD6</Top>
+			<Bottom>#3A0B44</Bottom>
+			<Side>#A02DB8</Side>
+			<Lines>#B94DCC</Lines>
+			<Threat>#B39ACF</Threat>
+		</Color>
+
+		<!-- Neon Pink -->
+		<Color ID="P6">
+			<Icon>#F567E2</Icon>
+			<Top>#FF9CF0</Top>
+			<Bottom>#6B2A61</Bottom>
+			<Side>#FF72EC</Side>
+			<Lines>#FF8FF4</Lines>
+			<Threat>#D0A0C8</Threat>
+		</Color>
+
+		<!-- Coral -->
+		<Color ID="P7">
+			<Icon>#FF6D6B</Icon>
+			<Top>#FFAAA8</Top>
+			<Bottom>#732D2C</Bottom>
+			<Side>#FF7F7D</Side>
+			<Lines>#FF918F</Lines>
+			<Threat>#D6A2A0</Threat>
+		</Color>
+
+		<!-- Bronze / Earth -->
+		<Color ID="P8">
+			<Icon>#A16B24</Icon>
+			<Top>#D1A76A</Top>
+			<Bottom>#4A2F0E</Bottom>
+			<Side>#B97A2E</Side>
+			<Lines>#D18A3A</Lines>
+			<Threat>#B7A58C</Threat>
+		</Color>
+
+		<!-- Chartreuse -->
+		<Color ID="P9">
+			<Icon>#C5C900</Icon>
+			<Top>#E6EA6A</Top>
+			<Bottom>#565800</Bottom>
+			<Side>#D6DB00</Side>
+			<Lines>#F0F51A</Lines>
+			<Threat>#C8CFA0</Threat>
+		</Color>
+
+		<!-- Berry -->
+		<Color ID="P10">
+			<Icon>#8D114F</Icon>
+			<Top>#C26A96</Top>
+			<Bottom>#3A0720</Bottom>
+			<Side>#B61F6F</Side>
+			<Lines>#D13A88</Lines>
+			<Threat>#B89AAA</Threat>
+		</Color>
+
+		
+		
+<!-- Attempt 1
+	<Color ID="P1">
+		<Icon>#0027EB</Icon>
+		<Top>#5e89ff</Top>
+		<Bottom>#00126A</Bottom>
+		<Side>#0044ff</Side>
+		<Lines>#1553ff</Lines>
+		<Threat>#7D9ADF</Threat>
+	</Color>
+
+	<Color ID="P2">
+		<Icon>#00BD16</Icon>
+		<Top>#7FE88B</Top>
+		<Bottom>#00550A</Bottom>
+		<Side>#2ED94A</Side>
+		<Lines>#1FFF39</Lines>
+		<Threat>#7DCF94</Threat>
+	</Color>
+
+	<Color ID="P3">
+		<Icon>#006EFF</Icon>
+		<Top>#59bdff</Top>
+		<Bottom>#004883</Bottom>
+		<Side>#20adff</Side>
+		<Lines>#2F9BFF</Lines>
+		<Threat>#7DB3E6</Threat>
+	</Color>
+
+	<Color ID="P4">
+		<Icon>#8000FF</Icon>
+		<Top>#B27FFF</Top>
+		<Bottom>#3A0073</Bottom>
+		<Side>#9A3DFF</Side>
+		<Lines>#A94DFF</Lines>
+		<Threat>#AA8CE6</Threat>
+	</Color>
+
+	<Color ID="P5">
+		<Icon>#00664D</Icon>
+		<Top>#7FB8A8</Top>
+		<Bottom>#002E23</Bottom>
+		<Side>#2F8F75</Side>
+		<Lines>#00A37A</Lines>
+		<Threat>#7DB0A7</Threat>
+	</Color>
+
+	<Color ID="P6">
+		<Icon>#00d9ff</Icon>
+		<Top>#7FD9FF</Top>
+		<Bottom>#006673</Bottom>
+		<Side>#2fe7ff</Side>
+		<Lines>#33f1ff</Lines>
+		<Threat>#7DCFE6</Threat>
+	</Color>
+
+	<Color ID="P7">
+		<Icon>#862D2D</Icon>
+		<Top>#C37F7F</Top>
+		<Bottom>#3C1414</Bottom>
+		<Side>#A54A4A</Side>
+		<Lines>#C03A3A</Lines>
+		<Threat>#AC9C9C</Threat>
+	</Color>
+
+	<Color ID="P8">
+		<Icon>#D0357F</Icon>
+		<Top>#E07FAF</Top>
+		<Bottom>#5E1839</Bottom>
+		<Side>#D9669B</Side>
+		<Lines>#FF3F9B</Lines>
+		<Threat>#C69FB9</Threat>
+	</Color>
+
+	<Color ID="P9">
+		<Icon>#FF7B00</Icon>
+		<Top>#FFB27F</Top>
+		<Bottom>#733700</Bottom>
+		<Side>#FF9A3F</Side>
+		<Lines>#FF8C1A</Lines>
+		<Threat>#D6B78C</Threat>
+	</Color>
+
+	<Color ID="P10">
+		<Icon>#567500</Icon>
+		<Top>#9FBF5F</Top>
+		<Bottom>#273500</Bottom>
+		<Side>#7FA83A</Side>
+		<Lines>#8FBF1F</Lines>
+		<Threat>#9BB58C</Threat>
+	</Color> -->
+
+	</ObjectsColors>
+
+</Resources>
