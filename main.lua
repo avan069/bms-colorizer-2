@@ -565,21 +565,34 @@ local function tryLoadLegendSwatchColorsFromTacviewXml()
 	end
 	state.legendSwatchColorLoaded = true
 
+	local function getAddonDirectory()
+		if debug and debug.getinfo then
+			local info = debug.getinfo(1, "S")
+			local source = info and info.source or ""
+			if source:sub(1, 1) == "@" then
+				source = source:sub(2)
+			end
+			source = source:gsub("/", "\\")
+			local dir = source:match("^(.*)\\[^\\]+$")
+			if dir and dir ~= "" then
+				return dir
+			end
+		end
+		return "."
+	end
+
 	local wanted = {}
 	for _, id in ipairs(builtInFlightColors) do
 		wanted[id] = true
 	end
 
+	local addonDir = getAddonDirectory()
 	local candidates =
 	{
-		"C:\\ProgramData\\Tacview\\Data\\Xml\\Data-ObjectsColors.xml",
-		"C:\\Program Files (x86)\\Tacview\\Data\\Xml\\Data-ObjectsColors.xml",
-		"C:\\Program Files\\Tacview\\Data\\Xml\\Data-ObjectsColors.xml",
-		"C:\\Program Files (x86)\\Tacview (beta)\\Data\\Xml\\Data-ObjectsColors.xml",
-		"C:\\Program Files\\Tacview (beta)\\Data\\Xml\\Data-ObjectsColors.xml",
+		addonDir .. "\\Data-ObjectsColors.xml"
 	}
 
-	local function parseHexRgbToArgb(hex)
+	local function parseHexRgbToAbgr(hex)
 		if type(hex) ~= "string" then
 			return nil
 		end
@@ -587,11 +600,13 @@ local function tryLoadLegendSwatchColorsFromTacviewXml()
 		if #hex ~= 6 then
 			return nil
 		end
-		local rgb = tonumber(hex, 16)
-		if not rgb then
+		local r = tonumber(hex:sub(1, 2), 16)
+		local g = tonumber(hex:sub(3, 4), 16)
+		local b = tonumber(hex:sub(5, 6), 16)
+		if not r or not g or not b then
 			return nil
 		end
-		return 0xff000000 + rgb
+		return 0xFF000000 + (b * 0x10000) + (g * 0x100) + r
 	end
 
 	local function readFile(path)
@@ -610,15 +625,19 @@ local function tryLoadLegendSwatchColorsFromTacviewXml()
 	for _, path in ipairs(candidates) do
 		local content = readFile(path)
 		if content then
-			for colorId in pairs(wanted) do
+			for _, colorId in ipairs(builtInFlightColors) do
 				if not colors[colorId] then
-					-- Parse blocks like:
-					-- <Color ID="P1"> ... <Icon>#RRGGBB</Icon> ... </Color>
-					local pattern = '<Color%s+ID="' .. colorId .. '".-<Icon>%s*(#[0-9a-fA-F]+)%s*</Icon>'
-					local iconHex = content:match(pattern)
-					local argb = parseHexRgbToArgb(iconHex)
-					if argb then
-						colors[colorId] = argb
+					-- Parse a specific block like:
+					-- <Color ID="P1"> ... <Side>#RRGGBB</Side> ... </Color>
+					local blockPattern = '<Color%s+ID="' .. colorId .. '">%s*(.-)%s*</Color>'
+					local block = content:match(blockPattern)
+					local sideHex = nil
+					if block then
+						sideHex = block:match('<Side>%s*(#[0-9a-fA-F]+)%s*</Side>')
+					end
+					local sideArgb = parseHexRgbToAbgr(sideHex)
+					if sideArgb then
+						colors[colorId] = sideArgb
 						foundAny = true
 					end
 				end
@@ -691,6 +710,18 @@ local function assignColors()
 		if coroutine.running() then
 			coroutine.yield()
 		end
+	end
+
+	tryLoadLegendSwatchColorsFromTacviewXml()
+
+	local function colorValueToHex(abgr)
+		if not abgr then
+			return nil
+		end
+		local b = math.floor(abgr / 0x10000) % 0x100
+		local g = math.floor(abgr / 0x100) % 0x100
+		local r = abgr % 0x100
+		return string.format("#%02X%02X%02X", r, g, b)
 	end
 
 	if telemetry.IsLikeEmpty and telemetry.IsLikeEmpty() then
@@ -1047,8 +1078,7 @@ local function drawLegend()
 	for lineIndex, line in ipairs(state.legendLines) do
 		-- Draw from top (line 1) down to bottom.
 		local y = legendTopY - (lineIndex - 1) * lineHeight
-		-- Swatch order is inverted relative to text in Tacview UI, so flip the index.
-		local swatchIndex = (#state.legendLines - lineIndex + 1)
+		local swatchIndex = lineIndex
 		local colorId = state.legendSwatchIds and state.legendSwatchIds[swatchIndex] or nil
 
 		if state.legendSwatchVertexArrayHandle and renderer.DrawUIVertexArray then
@@ -1093,6 +1123,14 @@ local function onUpdate()
 	end
 
 	if state.applyCoroutine then
+		if type(state.applyCoroutine) ~= "thread" then
+			logWarning("Apply coroutine invalid; resetting.")
+			state.applyCoroutine = nil
+			state.applyYield = nil
+			state.isApplying = false
+			Tacview.UI.Update()
+			return
+		end
 		local ok, err = coroutine.resume(state.applyCoroutine)
 		if not ok then
 			logWarning("Apply failed: ", err)
@@ -1102,7 +1140,7 @@ local function onUpdate()
 			Tacview.UI.Update()
 			return
 		end
-		if coroutine.status(state.applyCoroutine) == "dead" then
+		if type(state.applyCoroutine) == "thread" and coroutine.status(state.applyCoroutine) == "dead" then
 			state.applyCoroutine = nil
 			state.applyYield = nil
 			state.isApplying = false

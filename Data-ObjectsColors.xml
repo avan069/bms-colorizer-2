@@ -138,7 +138,7 @@
 
 		<!-- Vivid Lime -->
 		<Color ID="P3">
-			<Icon>#3c8500</Icon>
+			<Icon>#4ca800</Icon>
 			<Top>#A7E86A</Top>
 			<Bottom>#274F00</Bottom>
 			<Side>#6FE600</Side>
@@ -151,7 +151,7 @@
 			<Icon>#006B09</Icon>
 			<Top>#4FAF5A</Top>
 			<Bottom>#002F04</Bottom>
-			<Side>#0E8A1A</Side>
+			<Side>#077212</Side>
 			<Lines>#1EBF2A</Lines>
 			<Threat>#7FB092</Threat>
 		</Color>
@@ -216,98 +216,6 @@
 			<Threat>#B89AAA</Threat>
 		</Color>
 
-		
-		
-<!-- Attempt 1
-	<Color ID="P1">
-		<Icon>#0027EB</Icon>
-		<Top>#5e89ff</Top>
-		<Bottom>#00126A</Bottom>
-		<Side>#0044ff</Side>
-		<Lines>#1553ff</Lines>
-		<Threat>#7D9ADF</Threat>
-	</Color>
-
-	<Color ID="P2">
-		<Icon>#00BD16</Icon>
-		<Top>#7FE88B</Top>
-		<Bottom>#00550A</Bottom>
-		<Side>#2ED94A</Side>
-		<Lines>#1FFF39</Lines>
-		<Threat>#7DCF94</Threat>
-	</Color>
-
-	<Color ID="P3">
-		<Icon>#006EFF</Icon>
-		<Top>#59bdff</Top>
-		<Bottom>#004883</Bottom>
-		<Side>#20adff</Side>
-		<Lines>#2F9BFF</Lines>
-		<Threat>#7DB3E6</Threat>
-	</Color>
-
-	<Color ID="P4">
-		<Icon>#8000FF</Icon>
-		<Top>#B27FFF</Top>
-		<Bottom>#3A0073</Bottom>
-		<Side>#9A3DFF</Side>
-		<Lines>#A94DFF</Lines>
-		<Threat>#AA8CE6</Threat>
-	</Color>
-
-	<Color ID="P5">
-		<Icon>#00664D</Icon>
-		<Top>#7FB8A8</Top>
-		<Bottom>#002E23</Bottom>
-		<Side>#2F8F75</Side>
-		<Lines>#00A37A</Lines>
-		<Threat>#7DB0A7</Threat>
-	</Color>
-
-	<Color ID="P6">
-		<Icon>#00d9ff</Icon>
-		<Top>#7FD9FF</Top>
-		<Bottom>#006673</Bottom>
-		<Side>#2fe7ff</Side>
-		<Lines>#33f1ff</Lines>
-		<Threat>#7DCFE6</Threat>
-	</Color>
-
-	<Color ID="P7">
-		<Icon>#862D2D</Icon>
-		<Top>#C37F7F</Top>
-		<Bottom>#3C1414</Bottom>
-		<Side>#A54A4A</Side>
-		<Lines>#C03A3A</Lines>
-		<Threat>#AC9C9C</Threat>
-	</Color>
-
-	<Color ID="P8">
-		<Icon>#D0357F</Icon>
-		<Top>#E07FAF</Top>
-		<Bottom>#5E1839</Bottom>
-		<Side>#D9669B</Side>
-		<Lines>#FF3F9B</Lines>
-		<Threat>#C69FB9</Threat>
-	</Color>
-
-	<Color ID="P9">
-		<Icon>#FF7B00</Icon>
-		<Top>#FFB27F</Top>
-		<Bottom>#733700</Bottom>
-		<Side>#FF9A3F</Side>
-		<Lines>#FF8C1A</Lines>
-		<Threat>#D6B78C</Threat>
-	</Color>
-
-	<Color ID="P10">
-		<Icon>#567500</Icon>
-		<Top>#9FBF5F</Top>
-		<Bottom>#273500</Bottom>
-		<Side>#7FA83A</Side>
-		<Lines>#8FBF1F</Lines>
-		<Threat>#9BB58C</Threat>
-	</Color> -->
 
 	</ObjectsColors>
 
