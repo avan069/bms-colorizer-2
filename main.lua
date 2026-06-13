@@ -65,6 +65,7 @@ local builtInFlightColors =
 local modelNameFixups =
 {
 	["F-15C"] = "F-15C Eagle",
+	["F-15C Early"] = "F-15C Eagle",
 }
 
 local state =
