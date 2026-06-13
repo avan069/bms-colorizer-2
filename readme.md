@@ -12,10 +12,10 @@ Colors human-controlled BMS aircraft by flight in Tacview.
 
 ## Install
 1) **Copy this entire folder to:**  
-  `\Program Files (x86)\Tacview\AddOns\bms-colorizer-2\`
+  `[DriveLetter]:\Program Files (x86)\Tacview\AddOns\bms-colorizer-2\`
 
 2) **Copy Data-ObjectsColors.xml from this folder to:**  
-  `\ProgramData\Tacview\Data\Xml`
+  `[DriveLetter]:\ProgramData\Tacview\Data\Xml`
 
 3) **Enable the add-on in Tacview:**  
   Add Ons (gear icon) -> Enable/Disable Add Ons -> BMS Colorizer 2
